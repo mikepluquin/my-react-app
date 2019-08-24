@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import * as authActionCreators from '../../store/actions/creators/auth'
+import * as actionCreators from '../../store/actions/creators/auth'
 
 class Auth extends Component {
   state = {
@@ -40,7 +40,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password) => dispatch(authActionCreators.authInit(email, password)),
+    onAuth: (email, password) => dispatch(actionCreators.authInit(email, password)),
   }
 }
 

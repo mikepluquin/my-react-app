@@ -1,4 +1,4 @@
-import * as authActionTypes from '../actions/types/auth'
+import * as actionTypes from '../actions/types/auth'
 
 const initialState = {
   token: null,
@@ -16,7 +16,7 @@ const authStart = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case authActionTypes.AUTH_START: return authStart(state, action)
+    case actionTypes.AUTH_START: return authStart(state, action)
     default: return state
   }
 }
