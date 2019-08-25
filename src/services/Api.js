@@ -9,7 +9,7 @@ const api = () => {
   const login = (email, password) => {
     return config
     .post(
-      '/auth/login',
+      'auth/login',
       { 
         email: email, password: password
       }

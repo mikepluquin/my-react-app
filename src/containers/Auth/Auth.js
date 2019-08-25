@@ -1,42 +1,78 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
+import Form from '../../components/Form/Form'
+import Card from '../../components/UI/Card/Card'
 import * as actionCreators from '../../store/actions/creators/auth'
+import classes from './Auth.module.sass';
 
 class Auth extends Component {
   state = {
-    email: null,
-    password: null,
+    controls: {
+      email: {
+        type: "email",
+        placeholder: "Your email",
+        required: true,
+        hasLabel: false,
+        value: ''
+      },
+      password: {
+        type: "password",
+        placeholder: "Your password",
+        required: true,
+        hasLabel: false,
+        value: ''
+      }
+    }
   }
 
-  handlePasswordChange = (event) => {
+  handleFormChange = (name, value) => {
+    const controls = this.state.controls
+    const control = controls[name]
+
+    const updatedControl = {
+      ...control,
+      value: value
+    }
+
+    const updatedControls = {
+      ...controls,
+      [name]: updatedControl
+    }
+
     this.setState({
-      password: event.target.value
+      controls: updatedControls
     })
   }
-
-  handleEmailChange = (event) => {
-    this.setState({
-      email: event.target.value
-    })
-  }
-
 
   handleFormSubmit = (event) => {
     event.preventDefault()
-    this.props.onAuth(this.state.email, this.state.password)
-  }
-
-  render(){
-    return(
-      <form onSubmit={this.handleFormSubmit}>
-        <input type="email" placeholder="email" onChange={this.handleEmailChange}/>
-        <input type="password" placeholder="password" onChange={this.handlePasswordChange}/>
-        <button type="submit">Submit</button>
-      </form>
+    this.props.onAuth(
+      this.state.controls.email.value,
+      this.state.controls.password.value
     )
   }
-} 
+
+  render() {
+    const submit = {
+      value: "Login"
+    }
+
+    return (
+      <div className={classes.Auth}>
+        <div className="container">
+          <Card>
+            <Form
+              controls={this.state.controls}
+              submitted={this.handleFormSubmit}
+              changed={this.handleFormChange}
+              submit={submit} />
+          </Card>
+        </div>
+      </div>
+    )
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
