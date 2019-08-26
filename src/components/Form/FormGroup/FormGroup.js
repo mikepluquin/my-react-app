@@ -3,11 +3,9 @@ import PropTypes from 'prop-types'
 
 import Control from './Control/Control'
 import Label from './Label/Label'
-import classes from './FormGroup.module.sass';
 
 const formGroup = props => {
   const dynamicClasses = [
-    classes.formGroup,
     "form-group"
   ]
 

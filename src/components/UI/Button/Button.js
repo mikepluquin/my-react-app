@@ -1,10 +1,7 @@
 import React from 'react'
 
-import classes from './Button.module.sass';
-
 const button = props => {
   const dynamicClasses = [
-    classes.Button,
     "btn",
     "btn-light"
   ]

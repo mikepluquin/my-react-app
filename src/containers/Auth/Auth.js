@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import Form from '../../components/Form/Form'
 import Card from '../../components/UI/Card/Card'
 import * as actionCreators from '../../store/actions/creators/auth'
-import classes from './Auth.module.sass';
 
 class Auth extends Component {
   state = {
@@ -59,16 +58,14 @@ class Auth extends Component {
     }
 
     return (
-      <div className={classes.Auth}>
-        <div className="container">
-          <Card>
-            <Form
-              controls={this.state.controls}
-              submitted={this.handleFormSubmit}
-              changed={this.handleFormChange}
-              submit={submit} />
-          </Card>
-        </div>
+      <div className="container">
+        <Card>
+          <Form
+            controls={this.state.controls}
+            submitted={this.handleFormSubmit}
+            changed={this.handleFormChange}
+            submit={submit} />
+        </Card>
       </div>
     )
   }

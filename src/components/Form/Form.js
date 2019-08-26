@@ -3,12 +3,10 @@ import PropTypes from 'prop-types'
 
 import FormGroup from './FormGroup/FormGroup'
 import Button from '../UI/Button/Button'
-import classes from './Form.module.sass';
 
 const form = props => {
   return (
     <form
-      className={classes.Form}
       onSubmit={props.submitted}>
       {Object.keys(props.controls).map((name, index) => (
         <FormGroup

@@ -1,10 +1,8 @@
 import React from 'react'
-import classes from './Control.module.sass';
 import PropTypes from 'prop-types'
 
 const control = props => {
   const dynamicClasses = [
-    classes.Control,
     "form-control"
   ]
 
