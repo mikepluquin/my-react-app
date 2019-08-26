@@ -7,7 +7,7 @@ const initialState = {
   loading: false
 }
 
-const authStart = (state, action) => {
+const authLoginStart = (state, action) => {
   return{
     ...state, 
     loading: true
@@ -16,7 +16,7 @@ const authStart = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.AUTH_START: return authStart(state, action)
+    case actionTypes.AUTH_LOGIN_START: return authLoginStart(state, action)
     default: return state
   }
 }

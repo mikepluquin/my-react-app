@@ -1,30 +1,30 @@
 import * as actionTypes from '../types/auth'
 
-export const authInit = (email, password) => {
+export const authLoginInit = (email, password) => {
   return{
-    type: actionTypes.AUTH_INIT,
+    type: actionTypes.AUTH_LOGIN_INIT,
     email: email,
     password: password,
   }
 }
 
-export const authStart = () => {
+export const authLoginStart = () => {
   return {
-    type: actionTypes.AUTH_START
+    type: actionTypes.AUTH_LOGIN_START
   }
 }
 
-export const authSuccess = (token, userId) => {
+export const authLoginSuccess = (token, userId) => {
   return {
-    type: actionTypes.AUTH_SUCCESS,
+    type: actionTypes.AUTH_LOGIN_SUCCESS,
     token: token,
     userId: userId
   }
 }
 
-export const authFail = (error) => {
+export const authLoginFail = (error) => {
   return {
-    type: actionTypes.AUTH_FAIL,
+    type: actionTypes.AUTH_LOGIN_FAIL,
     error: error
   }
 }

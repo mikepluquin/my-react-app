@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Form from '../../components/Form/Form'
-import Card from '../../components/UI/Card/Card'
 import * as actionCreators from '../../store/actions/creators/auth'
 
 class Auth extends Component {
@@ -54,18 +53,21 @@ class Auth extends Component {
 
   render() {
     const submit = {
-      value: "Login"
+      value: "Login",
+      color: "primary",
+      size: "block"
     }
 
     return (
-      <div className="container">
-        <Card>
+      <div className="row">
+        <div className="col-md-4 offset-md-4">
           <Form
+            classesName={["relative-horizontal-center", "d-inline-block"]}
             controls={this.state.controls}
             submitted={this.handleFormSubmit}
             changed={this.handleFormChange}
             submit={submit} />
-        </Card>
+        </div>
       </div>
     )
   }
@@ -73,7 +75,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password) => dispatch(actionCreators.authInit(email, password)),
+    onAuth: (email, password) => dispatch(actionCreators.authLoginInit(email, password)),
   }
 }
 

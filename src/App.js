@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
+import { Switch, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import Auth from './containers/Auth/Auth'
+import AuthLayout from './components/Layout/AuthLayout/AuthLayout'
+// import DefaultLayout from './components/Layout/DefaultLayout/DefaultLayout'
 
 class App extends Component {
   render() {
@@ -18,7 +20,7 @@ class App extends Component {
     if (!logged) {
       routes = (
         <Switch>
-          <Route exact path="/login" component={Auth} />
+          <AuthLayout exact path="/login" component={Auth} />
           {/* if no route match, then redirect to login */}
           <Redirect to="/login" />
         </Switch>
