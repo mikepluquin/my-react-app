@@ -3,17 +3,23 @@ import { Route } from 'react-router-dom'
 
 import classes from './AuthLayout.module.sass'
 
-const authLayout = props => {
+const authLayout = ({ component: MatchComponent, ...remainingProps }) => {
   return (
-    <div className={classes.AuthLayout + " bg-blue"}>
-      <div className="container">
-        <div className="card align-top">
-          <div className="card-body">
-            <Route {...props} />
+    <Route
+      {...remainingProps}
+      render={matchProps => (
+        <div className={classes.AuthLayout + " bg-blue"}>
+          <div className="container">
+            <div className="card align-top">
+              <div className="card-body">
+                <MatchComponent {...matchProps}/>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+
+      )}
+    />
   )
 }
 
