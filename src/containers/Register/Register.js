@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Form from '../../components/Form/Form'
 import * as actionCreators from '../../store/actions/creators/auth'
 
-class Auth extends Component {
+class Login extends Component {
   state = {
     controls: {
       email: {
@@ -45,7 +45,7 @@ class Auth extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault()
-    this.props.onAuth(
+    this.props.onLogin(
       this.state.controls.email.value,
       this.state.controls.password.value
     )
@@ -75,8 +75,8 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (email, password) => dispatch(actionCreators.authLoginInit(email, password)),
+    onRegister: (email, password, passwordConfirmation) => dispatch(actionCreators.authLoginInit(email, password, passwordConfirmation)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(Auth)
+export default connect(null, mapDispatchToProps)(Login)

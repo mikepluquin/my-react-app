@@ -1,10 +1,9 @@
 import * as actionTypes from '../types/auth'
 
-export const authLoginInit = (email, password) => {
+export const authLoginInit = (attributes) => {
   return{
     type: actionTypes.AUTH_LOGIN_INIT,
-    email: email,
-    password: password,
+    attributes: attributes
   }
 }
 

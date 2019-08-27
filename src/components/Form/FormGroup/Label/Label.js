@@ -1,17 +1,25 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const label = props => {
-  let dynamicLabel = null
-  if (!props.hidden) {
-    dynamicLabel = (
-      <label
-        htmlFor={props.for}>
-        {props.children}
-      </label>
-    )
+  const classesName = []
+
+  if (props.invalid) {
+    classesName.push('text-danger')
   }
 
-  return dynamicLabel
+  return (
+    <label
+      className={classesName.join(' ')}
+      htmlFor={props.for}>
+      {props.children}
+    </label>
+  )
+}
+
+label.propTypes = {
+  invalid: PropTypes.bool,
+  for: PropTypes.string
 }
 
 export default label

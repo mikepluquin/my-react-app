@@ -2,13 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const control = props => {
-  const dynamicClasses = [
+  const classesName = [
     "form-control"
   ]
 
+  if (props.invalid) {
+    classesName.push('is-invalid')
+  }
+
   const dynamicControl = (
     <input
-      className={dynamicClasses.join(' ')}
+      className={classesName.join(' ')}
       value={props.value}
       type={props.type}
       name={props.name}
@@ -24,9 +28,11 @@ const control = props => {
 control.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  errors: PropTypes.array,
   required: PropTypes.bool,
   disabled: PropTypes.bool,
-  changed: PropTypes.func
+  invalid: PropTypes.bool,
+  changed: PropTypes.func,
 }
 
 export default control
