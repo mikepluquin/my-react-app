@@ -1,17 +1,18 @@
 import { put } from 'redux-saga/effects'
 
 import * as api from '../../services/api'
-import * as actionCreators from '../actions/creators/auth'
+import * as actionCreators from './actionCreators'
+
 
 export function* authLoginInitSaga(action) {
-  yield put(actionCreators.authLoginStart())
-
+  yield action.started({})
   const response = yield api.login(action.attributes)
   if (response.ok) {
-    yield put(actionCreators.authLoginSuccess())
+    yield put(actionCreators.authLoginSuccess(response.data.token, response.data.id, response.data.exp))
+    yield action.done()
   }
   else{
-    yield put(actionCreators.authLoginFail(response.data.error))
+    yield action.done({errors: [response.data.error]})
   }
   // yield localStorage.setItem('token', response.data.idToken)
   // yield localStorage.setItem('expirationDate', expirationDate)
@@ -19,3 +20,4 @@ export function* authLoginInitSaga(action) {
 
   // yield put(actionCreators.authSuccess(response.data.idToken, response.data.localId))
 }
+

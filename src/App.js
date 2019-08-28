@@ -3,7 +3,6 @@ import { Switch, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import Login from './containers/Login/Login'
-import Register from './containers/Register/Register'
 import AuthLayout from './components/Layout/AuthLayout/AuthLayout'
 // import DefaultLayout from './components/Layout/DefaultLayout/DefaultLayout'
 
@@ -18,12 +17,12 @@ class App extends Component {
         { 
           logged ?
             <Fragment>
-              <Redirect to="/" />
+              <AuthLayout exact path="/login" component={Login} />
+              <Redirect to="/login" />
             </Fragment> :
 
             <Fragment>
               <AuthLayout exact path="/login" component={Login} />
-              <AuthLayout exact path="/register" component={Register} />
               <Redirect to="/login" />
             </Fragment>
         }

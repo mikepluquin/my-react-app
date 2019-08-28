@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { fromJS } from 'immutable'
 
 import Form from '../../components/Form/Form'
-import * as actionCreators from '../../store/actions/creators/auth'
+import * as actionCreators from '../../store/auth/actionCreators'
 
 class Login extends Component {
-  static getDerivedStateFromProps(props, state){
-    state.form.loading = props.loading
-    state.form.errors = props.form.errors
-    return state
-  }
-
   state = {
     form: {
       controls: {
@@ -43,24 +39,9 @@ class Login extends Component {
   }
 
   handleFormChange = (name, value) => {
-    const form = this.state.form
-    const controls = form.controls
-    const control = controls[name]
-
-    const updatedControl = {
-      ...control,
-      value: value
-    }
-
-    const updatedControls = {
-      ...controls,
-      [name]: updatedControl
-    }
-
-    const updatedForm = {
-      ...form,
-      controls: updatedControls
-    }
+    const updatedForm = fromJS(this.state.form)
+      .setIn(['controls', name, 'value'], value)
+      .toJS()
 
     this.setState({
       form: updatedForm
@@ -69,14 +50,40 @@ class Login extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault()
+
     this.props.onLogin({
-      email: this.state.form.controls.email.value,
-      password: this.state.form.controls.password.value
+      attributes: {
+        email: this.state.form.controls.email.value,
+        password: this.state.form.controls.password.value
+      },
+      started: this.handleLoginStarted,
+      done: this.handleLoginDone
+    })
+  }
+
+  handleLoginStarted = () => {
+    const updatedForm = fromJS(this.state.form)
+    .set('loading', true)
+    .toJS()
+
+    this.setState({
+      form: updatedForm
+    })
+  }
+
+  handleLoginDone = (payload = null) => {
+    const errors = payload && payload.errors ? payload.errors : []
+    const updatedForm = fromJS(this.state.form)
+    .set('loading', false)
+    .set('errors', errors)
+    .toJS()
+    
+    this.setState({
+      form: updatedForm
     })
   }
 
   render() {
-
     return (
       <div className="row">
         <div className="col-md-4 offset-md-4">
@@ -88,6 +95,14 @@ class Login extends Component {
             changed={this.handleFormChange}
             submit={this.state.form.submit}
             loading={this.state.form.loading} />
+
+          <NavLink
+            exact
+            to="/register"
+            className="text-center"
+          >
+            New to the app ? Register now !
+          </NavLink>
         </div>
       </div>
     )
@@ -103,7 +118,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: (attributes) => dispatch(actionCreators.authLoginInit(attributes)),
+    onLogin: (payload) => dispatch(actionCreators.authLoginInit(payload))
   }
 }
 

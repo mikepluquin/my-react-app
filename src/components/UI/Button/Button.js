@@ -25,7 +25,7 @@ const button = props => {
 
 button.propTypes = {
   size: PropTypes.string,
-  primary: PropTypes.string
+  color: PropTypes.string
 }
 
 button.defaultProps = {
