@@ -7,7 +7,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import Errors from './FormGroup/Errors/Errors'
 
 const form = props => {
-  const disabled = props.loading
+  const disabled = props.disabled
   const hasErrors = props.errors.length > 0
   return (
     <form onSubmit={props.submitted}>

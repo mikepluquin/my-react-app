@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { fromJS } from 'immutable'
 
-import Form from '../../components/Form/Form'
+import Button from '../../components/UI/Button/Button'
+import Spinner from '../../components/UI/Spinner/Spinner'
+import FormGroup from '../../components/Form/FormGroup/FormGroup'
 import * as actionCreators from '../../store/auth/actionCreators'
 
 class Login extends Component {
@@ -66,7 +68,8 @@ class Login extends Component {
         size: "block"
       },
       errors: [],
-      loading: false
+      loading: false,
+      disabled: false
     }
   }
 
@@ -100,6 +103,7 @@ class Login extends Component {
   handleLoginStarted = () => {
     const updatedForm = fromJS(this.state.form)
       .set('loading', true)
+      .set('disabled', true)
       .toJS()
 
     this.setState({
@@ -122,14 +126,69 @@ class Login extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-md-4 offset-md-4">
-          <Form
-            controls={this.state.form.controls}
-            errors={this.state.form.errors}
-            submitted={this.handleFormSubmit}
-            changed={this.handleFormChange}
-            submit={this.state.form.submit}
-            loading={this.state.form.loading} />
+        <div className="col-md-6 offset-md-3">
+          <form onSubmit={this.handleFormSubmit}>
+            <fieldset disabled={this.state.form.disabled}>
+              <div className="row">
+                <div className="col-md-6">
+                  <FormGroup
+                    name="email"
+                    control={this.state.form.controls.email}
+                    disabled={this.state.form.disabled}
+                    changed={(name, value) => this.handleFormChange(name, value)} />
+
+                  <FormGroup
+                    name="password"
+                    control={this.state.form.controls.password}
+                    disabled={this.state.form.disabled}
+                    changed={(name, value) => this.handleFormChange(name, value)} />
+
+                  <FormGroup
+                    name="passwordConfirmation"
+                    control={this.state.form.controls.passwordConfirmation}
+                    disabled={this.state.form.disabled}
+                    changed={(name, value) => this.handleFormChange(name, value)} />
+                </div>
+
+                <div className="col-md-6">
+                  <FormGroup
+                    name="firstName"
+                    control={this.state.form.controls.firstName}
+                    disabled={this.state.form.disabled}
+                    changed={(name, value) => this.handleFormChange(name, value)} />
+
+                  <FormGroup
+                    name="lastName"
+                    control={this.state.form.controls.lastName}
+                    disabled={this.state.form.disabled}
+                    changed={(name, value) => this.handleFormChange(name, value)} />
+
+                  <FormGroup
+                    name="bornDate"
+                    control={this.state.form.controls.bornDate}
+                    disabled={this.state.form.disabled}
+                    changed={(name, value) => this.handleFormChange(name, value)} />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-12">
+                  {this.state.form.submit ?
+                    <Button {...this.state.form.submit} type="submit">
+                      {
+                        this.state.form.loading ?
+                          <Spinner
+                            size="sm"
+                          /> :
+                          this.state.form.submit.value
+                      }
+                    </Button> :
+                    null
+                  }
+                </div>
+              </div>
+            </fieldset>
+          </form>
 
           <NavLink
             exact

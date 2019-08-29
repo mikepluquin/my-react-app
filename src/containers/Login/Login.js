@@ -64,6 +64,7 @@ class Login extends Component {
   handleLoginStarted = () => {
     const updatedForm = fromJS(this.state.form)
       .set('loading', true)
+      .set('disabled', true)
       .toJS()
 
     this.setState({
