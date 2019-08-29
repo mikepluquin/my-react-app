@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 const control = props => {
@@ -35,4 +35,4 @@ control.propTypes = {
   changed: PropTypes.func,
 }
 
-export default control
+export default memo(control)

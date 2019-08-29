@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const errors = props => {
 
@@ -9,4 +9,4 @@ const errors = props => {
   )
 }
 
-export default errors
+export default memo(errors)

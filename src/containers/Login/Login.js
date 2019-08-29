@@ -63,8 +63,8 @@ class Login extends Component {
 
   handleLoginStarted = () => {
     const updatedForm = fromJS(this.state.form)
-    .set('loading', true)
-    .toJS()
+      .set('loading', true)
+      .toJS()
 
     this.setState({
       form: updatedForm
@@ -74,10 +74,10 @@ class Login extends Component {
   handleLoginDone = (payload = null) => {
     const errors = payload && payload.errors ? payload.errors : []
     const updatedForm = fromJS(this.state.form)
-    .set('loading', false)
-    .set('errors', errors)
-    .toJS()
-    
+      .set('loading', false)
+      .set('errors', errors)
+      .toJS()
+
     this.setState({
       form: updatedForm
     })
@@ -101,7 +101,7 @@ class Login extends Component {
             to="/register"
             className="text-center"
           >
-            New to the app ? Register now !
+            New to the app ? Register now
           </NavLink>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 const label = props => {
@@ -22,4 +22,4 @@ label.propTypes = {
   for: PropTypes.string
 }
 
-export default label
+export default memo(label)

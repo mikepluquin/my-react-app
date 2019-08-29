@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 const spinner = props => {
@@ -22,4 +22,4 @@ spinner.propTypes = {
   size: PropTypes.string,
 }
 
-export default spinner
+export default memo(spinner)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 const button = props => {
@@ -32,4 +32,4 @@ button.defaultProps = {
   color: "primary"
 };
 
-export default button
+export default memo(button)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 import FormGroup from './FormGroup/FormGroup'
@@ -9,7 +9,6 @@ import Errors from './FormGroup/Errors/Errors'
 const form = props => {
   const disabled = props.loading
   const hasErrors = props.errors.length > 0
-
   return (
     <form onSubmit={props.submitted}>
       <fieldset disabled={disabled}>
@@ -53,4 +52,4 @@ form.propTypes = {
   changed: PropTypes.func
 }
 
-export default form 
+export default memo(form)

@@ -1,5 +1,3 @@
-import { fromJS } from 'immutable'
-
 import * as actionTypes from './actionTypes'
 
 const initialState = {
@@ -9,11 +7,12 @@ const initialState = {
 }
 
 const authLoginSuccess = (state, action) => {
-  return fromJS(state)
-  .set('token', action.token)
-  .set('userId', action.userId)
-  .set('expirationDate', action.expirationDate)
-  .toJS()
+  return {
+    ...state, 
+    token: action.token,
+    userId: action.userId,
+    expirationDate: action.expirationDate
+  }
 }
 
 const reducer = (state = initialState, action) => {

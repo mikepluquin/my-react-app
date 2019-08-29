@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 import Control from './Control/Control'
@@ -50,4 +50,4 @@ formGroup.propTypes = {
   changed: PropTypes.func
 }
 
-export default formGroup
+export default memo(formGroup)
