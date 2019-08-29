@@ -8,16 +8,15 @@ const authLayout = ({ component: MatchComponent, ...remainingProps }) => {
     <Route
       {...remainingProps}
       render={matchProps => (
-        <div className={classes.AuthLayout + " bg-blue"}>
+        <div id="layout" className={classes.AuthLayout + " bg-blue"}>
           <div className="container">
             <div className="card align-top">
               <div className="card-body">
-                <MatchComponent {...matchProps}/>
+                <MatchComponent {...matchProps} />
               </div>
             </div>
           </div>
         </div>
-
       )}
     />
   )

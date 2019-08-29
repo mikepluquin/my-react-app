@@ -3,12 +3,14 @@ import { Route } from 'react-router-dom'
 
 const defaultLayout = ({ component: MatchComponent, ...remainingProps }) => {
   return (
-    <Route
-      {...remainingProps}
-      render={matchProps => (
-        <MatchComponent {...matchProps} />
-      )}
-    />
+    <div id="layout">
+      <Route
+        {...remainingProps}
+        render={matchProps => (
+          <MatchComponent {...matchProps} />
+        )}
+      />
+    </div>
   )
 }
 
