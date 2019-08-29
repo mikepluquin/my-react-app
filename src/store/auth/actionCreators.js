@@ -9,6 +9,14 @@ export const authLoginInit = (payload) => {
   }
 }
 
+export const authRegisterInit = (payload) => {
+  return{
+    type: actionTypes.AUTH_LOGIN_INIT,
+    attributes: payload.attributes,
+    started: payload.started,
+    done: payload.done
+  }
+}
 export const authLoginSuccess = (token, userId, expirationDate) => {
   return {
     type: actionTypes.AUTH_LOGIN_SUCCESS,

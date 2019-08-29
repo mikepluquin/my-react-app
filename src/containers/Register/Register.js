@@ -26,11 +26,43 @@ class Login extends Component {
           required: true,
           value: '',
           errors: []
-        }
+        },
+        passwordConfirmation: {
+          type: "password",
+          placeholder: "confirm your password",
+          label: "Password confirmation",
+          required: true,
+          value: '',
+          errors: [],
+        },
+        firstName: {
+          type: "text",
+          placeholder: "your first name",
+          label: "First name",
+          required: true,
+          value: '',
+          errors: [],
+        },
+        lastName: {
+          type: "text",
+          placeholder: "your last name",
+          label: "Last name",
+          required: true,
+          value: '',
+          errors: [],
+        },
+        bornDate: {
+          type: "text",
+          placeholder: "your born date",
+          label: "Born date",
+          required: true,
+          value: '',
+          errors: [],
+        },
       },
       submit: {
-        value: "Login",
-        color: "primary",
+        value: "Register",
+        color: "success",
         size: "block"
       },
       errors: [],
@@ -51,10 +83,14 @@ class Login extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault()
 
-    this.props.onLogin({
+    this.props.onRegister({
       attributes: {
         email: this.state.form.controls.email.value,
-        password: this.state.form.controls.password.value
+        password: this.state.form.controls.password.value,
+        passwordConfirmation: this.state.form.controls.passwordConfirmation.value,
+        firstName: this.state.form.controls.firstName.value,
+        lastName: this.state.form.controls.lastName.value,
+        bornDate: this.state.form.controls.bornDate.value
       },
       started: this.handleLoginStarted,
       done: this.handleLoginDone
@@ -97,10 +133,10 @@ class Login extends Component {
 
           <NavLink
             exact
-            to="/register"
+            to="/login"
             className="text-center"
           >
-            New to the app ? Register now
+            Already have an account ? Please log in
           </NavLink>
         </div>
       </div>
@@ -116,7 +152,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: (payload) => dispatch(actionCreators.authLoginInit(payload))
+    onRegister: (payload) => dispatch(actionCreators.authRegisterInit(payload))
   }
 }
 
