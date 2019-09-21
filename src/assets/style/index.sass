@@ -1,5 +1,17 @@
 @import 'reset'
+@import 'variables'
 @import 'classes'
 
 #root
   min-height: 100%
+
+body 
+  font-family: 'Roboto Slab', serif
+
+a 
+  color: $red
+  transition: 0.3s 
+  &:hover 
+    color: darken($red, 10%)
+    transition: 0.3s
+    text-decoration: none

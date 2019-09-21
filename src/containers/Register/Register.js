@@ -64,7 +64,7 @@ class Login extends Component {
       },
       submit: {
         value: "Register",
-        color: "success",
+        color: "red",
         size: "block"
       },
       errors: [],
