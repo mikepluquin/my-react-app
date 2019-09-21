@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 // import Login from './containers/Login/Login'
 import LoadingLayout from './components/Layout/LoadingLayout/LoadingLayout'
+import DefaultLayout from './components/Layout/DefaultLayout/DefaultLayout'
 import AuthLayout from './components/Layout/AuthLayout/AuthLayout'
 // import DefaultLayout from './components/Layout/DefaultLayout/DefaultLayout'
 const Login = lazy(() => import('./containers/Login/Login'))
@@ -22,7 +23,7 @@ class App extends Component {
           {
             logged ?
               <Fragment>
-                <AuthLayout exact path="/" component={Home} />
+                <DefaultLayout exact path="/" component={Home} />
                 <Redirect to="/" />
               </Fragment> :
 

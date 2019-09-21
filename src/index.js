@@ -13,7 +13,7 @@ import * as serviceWorker from './serviceWorker';
 import './assets/style/index.sass'
 
 // redux dev tools
-const composeEnhancers = process.env.NODE_ENV === "development" ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)))
