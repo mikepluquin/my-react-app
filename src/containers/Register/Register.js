@@ -9,7 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import FormGroup from '../../components/Form/FormGroup/FormGroup'
 import * as actionCreators from '../../store/auth/actionCreators'
 
-class Login extends Component {
+class Register extends Component {
   state = {
     form: {
       controls: {
@@ -97,10 +97,18 @@ class Login extends Component {
       attributes[obj] = this.state.form.controls[obj].value
     })
 
-    this.props.onRegister({
-      attributes: attributes,
-      started: this.handleRegisterStarted,
-      done: this.handleRegisterDone
+    new Promise((resolve, reject) => {
+      this.handleRegisterStarted()
+      this.props.onRegister({
+        attributes: attributes,
+        resolve: resolve,
+        reject: reject
+      })
+    }).then(() => {
+      this.handleRegisterDone()
+
+    }).catch((payload) => {
+      this.handleRegisterDone(payload)
     })
   }
 
@@ -227,8 +235,8 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-Login.propTypes = {
+Register.propTypes = {
   loading: PropTypes.bool
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Register)

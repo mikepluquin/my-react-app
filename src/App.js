@@ -6,12 +6,17 @@ import LoadingLayout from './components/Layout/LoadingLayout/LoadingLayout'
 import DefaultLayout from './components/Layout/DefaultLayout/DefaultLayout'
 import AuthLayout from './components/Layout/AuthLayout/AuthLayout'
 import ErrorBoundary from './errorBoundary'
+import * as actionCreators from './store/auth/actionCreators'
 
 const Login = lazy(() => import('./containers/Login/Login'))
 const Register = lazy(() => import('./containers/Register/Register'))
 const Home = lazy(() => import('./containers/Home/Home'))
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onAutoLogin()
+  }
+
   render() {
 
     const logged = this.props.userId && this.props.token
@@ -47,4 +52,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(withRouter(App));
+const mapDispatchToProps = dispatch => {
+  return {
+    onAutoLogin: () => dispatch(actionCreators.authAutoLoginInit())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

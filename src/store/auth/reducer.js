@@ -15,6 +15,15 @@ const authLoginSuccess = (state, action) => {
   }
 }
 
+const authAutoLoginSuccess = (state, action) => {
+  return {
+    ...state, 
+    token: action.token,
+    userId: action.userId,
+    expirationDate: action.expirationDate
+  }
+}
+
 const authRegisterSuccess = (state, action) => {
   return {
     ...state, 
@@ -27,6 +36,7 @@ const authRegisterSuccess = (state, action) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_LOGIN_SUCCESS: return authLoginSuccess(state, action)
+    case actionTypes.AUTH_AUTO_LOGIN_SUCCESS: return authAutoLoginSuccess(state, action)
     case actionTypes.AUTH_REGISTER_SUCCESS: return authRegisterSuccess(state, action)
     default: return state
   }

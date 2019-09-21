@@ -56,10 +56,19 @@ class Login extends Component {
       attributes[obj] = this.state.form.controls[obj].value
     })
 
-    this.props.onLogin({
-      attributes: attributes,
-      started: this.handleLoginStarted,
-      done: this.handleLoginDone
+    new Promise((resolve, reject) => {
+      this.handleLoginStarted()
+      this.props.onLogin({
+        attributes: attributes,
+        resolve: resolve,
+        reject: reject
+      })
+
+    }).then(() => {
+      this.handleLoginDone()
+
+    }).catch((payload) => {
+      this.handleLoginDone(payload)
     })
   }
 

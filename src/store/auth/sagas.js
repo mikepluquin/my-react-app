@@ -4,36 +4,44 @@ import * as api from '../../services/api'
 import * as actionCreators from './actionCreators'
 
 export function* authLoginInitSaga(action) {
-  yield action.started({})
   const response = yield api.login(action.attributes)
   if (response.ok) {
     yield put(actionCreators.authLoginSuccess(response.data.token, response.data.id, response.data.exp))
-    yield action.done()
+    
+    yield localStorage.setItem('token', response.data.token)
+    yield localStorage.setItem('expirationDate', response.data.exp)
+    yield localStorage.setItem('userId', response.data.id)
+
+    yield action.resolve()
   }
   else{
-    yield action.done({errors: [response.data.error]})
+    yield action.reject({errors: [response.data.error]})
   }
-  // yield localStorage.setItem('token', response.data.idToken)
-  // yield localStorage.setItem('expirationDate', expirationDate)
-  // yield localStorage.setItem('userId', response.data.localId)
+}
 
-  // yield put(actionCreators.authSuccess(response.data.idToken, response.data.localId))
+export function* authAutoLoginInitSaga(action) {
+  const token = localStorage.getItem('token')
+  const userId = localStorage.getItem('userId')
+  const expirationDate = localStorage.getItem('expirationDate')
+
+  if (token && userId && expirationDate) {
+    yield put(actionCreators.authAutoLoginSuccess(token, userId, expirationDate))
+  }
 }
 
 export function* authRegisterInitSaga(action) {
-  yield action.started({})
   const response = yield api.register(action.attributes)
   if (response.ok) {
     yield put(actionCreators.authRegisterSuccess(response.data.token, response.data.id, response.data.exp))
-    yield action.done()
+   
+    yield localStorage.setItem('token', response.data.token)
+    yield localStorage.setItem('expirationDate', response.data.exp)
+    yield localStorage.setItem('userId', response.data.id)
+   
+    yield action.resolve()
   }
   else{
-    yield action.done({errors: response.data.errors})
+    yield action.reject({errors: response.data.errors})
   }
-  // yield localStorage.setItem('token', response.data.idToken)
-  // yield localStorage.setItem('expirationDate', expirationDate)
-  // yield localStorage.setItem('userId', response.data.localId)
-
-  // yield put(actionCreators.authSuccess(response.data.idToken, response.data.localId))
 }
 
