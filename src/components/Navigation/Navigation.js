@@ -4,7 +4,11 @@ import NavigationItem from './NavigationItem/NavigationItem'
 
 const navigation = props => {
   return (
-    <nav>navigation</nav>
+    <nav className="navbar bg-red text-light">
+      <span className="navbar-brand">
+        M
+      </span>
+    </nav>
   )
 }
 

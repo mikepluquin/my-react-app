@@ -39,19 +39,10 @@ class Register extends Component {
           valid: false,
           errors: [],
         },
-        first_name: {
+        username: {
           type: "text",
-          placeholder: "your first name",
-          label: "First name",
-          required: true,
-          value: '',
-          valid: false,
-          errors: [],
-        },
-        last_name: {
-          type: "text",
-          placeholder: "your last name",
-          label: "Last name",
+          placeholder: "your username",
+          label: "Username",
           required: true,
           value: '',
           valid: false,
@@ -178,14 +169,8 @@ class Register extends Component {
 
                 <div className="col-md-6">
                   <FormGroup
-                    name="first_name"
-                    control={this.state.form.controls.first_name}
-                    disabled={this.state.form.disabled}
-                    changed={(name, value) => this.handleFormChange(name, value)} />
-
-                  <FormGroup
-                    name="last_name"
-                    control={this.state.form.controls.last_name}
+                    name="username"
+                    control={this.state.form.controls.username}
                     disabled={this.state.form.disabled}
                     changed={(name, value) => this.handleFormChange(name, value)} />
 

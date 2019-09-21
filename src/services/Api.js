@@ -5,6 +5,10 @@ const config = create({
   timeout: 20000
 })
 
+const setAuthorization = (token) => {
+  config.setHeader('Authorization', token)
+}
+
 export const login = (attributes) => {
   return config
     .post(
@@ -23,4 +27,10 @@ export const register = (attributes) => {
         user: attributes
       }
     )
+}
+
+export const fetchPosts = (token) => {
+  setAuthorization(token)
+  return config
+    .get('posts')
 }

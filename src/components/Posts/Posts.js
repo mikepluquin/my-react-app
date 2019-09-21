@@ -1,18 +1,19 @@
-import React, { Fragment, memo } from 'react'
+import React, { memo } from 'react'
 
 import Post from './Post/Post'
 
 const posts = props => {
   return (
-    <Fragment>
+    <div className="container">
       {
         props.posts.map(post => (
           <Post
+            {...post}
             key={post.id}
           />
         )
         )}
-    </Fragment>
+    </div>
   )
 }
 

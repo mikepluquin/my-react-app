@@ -5,7 +5,7 @@ import Header from '../../../containers/Header/Header'
 
 const defaultLayout = ({ component: MatchComponent, ...remainingProps }) => {
   return (
-    <div id="layout">
+    <div id="layout" className="bg-purple">
       <Fragment>
         <Header />
         <main>
