@@ -19,6 +19,7 @@ class Login extends Component {
           label: "Email",
           required: true,
           value: '',
+          valid: false,
           errors: [],
         },
         password: {
@@ -35,6 +36,7 @@ class Login extends Component {
           label: "Password confirmation",
           required: true,
           value: '',
+          valid: false,
           errors: [],
         },
         first_name: {
@@ -43,6 +45,7 @@ class Login extends Component {
           label: "First name",
           required: true,
           value: '',
+          valid: false,
           errors: [],
         },
         last_name: {
@@ -51,14 +54,15 @@ class Login extends Component {
           label: "Last name",
           required: true,
           value: '',
+          valid: false,
           errors: [],
         },
         born_date: {
           type: "date",
           placeholder: "your born date",
           label: "Born date",
-          required: true,
           value: '',
+          valid: false,
           errors: [],
         },
       },
@@ -67,6 +71,7 @@ class Login extends Component {
         color: "red",
         size: "block"
       },
+      valid: false,
       errors: [],
       loading: false,
       disabled: false
@@ -87,6 +92,7 @@ class Login extends Component {
     event.preventDefault()
 
     const attributes = {}
+    // submit all attributes
     Object.keys(this.state.form.controls).forEach((obj) => {
       attributes[obj] = this.state.form.controls[obj].value
     })
@@ -110,11 +116,25 @@ class Login extends Component {
   }
 
   handleRegisterDone = (payload = null) => {
-    const errors = payload && payload.errors ? payload.errors : []
-    const updatedForm = fromJS(this.state.form)
+    const errors = payload && payload.errors ? payload.errors : {}
+    let updatedForm = fromJS(this.state.form)
       .set('loading', false)
-      .set('errors', errors)
-      .toJS()
+      .set('disabled', false)
+
+    // add valid statuses
+    Object.keys(this.state.form.controls).forEach((controlKey) => {
+      if (errors[controlKey]) {
+        updatedForm = updatedForm
+          .setIn(['controls', controlKey, 'errors'], errors[controlKey])
+      }
+      else {
+        updatedForm = updatedForm
+          .setIn(['controls', controlKey, 'valid'], true)
+          .setIn(['controls', controlKey, 'errors'], [])
+      }
+    })
+
+    updatedForm = updatedForm.toJS()
 
     this.setState({
       form: updatedForm

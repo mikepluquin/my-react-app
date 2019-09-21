@@ -6,8 +6,12 @@ const control = props => {
     "form-control"
   ]
 
-  if (props.invalid) {
+  if (props.invalid && !props.valid) {
     classesName.push('is-invalid')
+  }
+
+  if (props.valid && !props.invalid) {
+    classesName.push('is-valid')
   }
 
   const dynamicControl = (
@@ -32,6 +36,7 @@ control.propTypes = {
   required: PropTypes.bool,
   disabled: PropTypes.bool,
   invalid: PropTypes.bool,
+  valid: PropTypes.bool,
   changed: PropTypes.func,
   placeholder: PropTypes.string,
   value: PropTypes.any

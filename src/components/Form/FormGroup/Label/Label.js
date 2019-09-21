@@ -4,8 +4,12 @@ import PropTypes from 'prop-types'
 const label = props => {
   const classesName = []
 
-  if (props.invalid) {
+  if (props.invalid && !props.valid) {
     classesName.push('text-danger')
+  }
+
+  if (props.valid && !props.invalid) {
+    classesName.push('text-success')
   }
 
   return (
@@ -20,6 +24,7 @@ const label = props => {
 label.propTypes = {
   required: PropTypes.bool,
   invalid: PropTypes.bool,
+  valid: PropTypes.bool,
   for: PropTypes.string
 }
 

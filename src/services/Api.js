@@ -7,11 +7,20 @@ const config = create({
 
 export const login = (attributes) => {
   return config
-  .post(
-    'auth/login',
-    { 
-      email: attributes.email, password: attributes.password
-    }
-  )
+    .post(
+      'auth/login',
+      {
+        email: attributes.email, password: attributes.password
+      }
+    )
 }
 
+export const register = (attributes) => {
+  return config
+    .post(
+      'auth/register',
+      {
+        user: attributes
+      }
+    )
+}

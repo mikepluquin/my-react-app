@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import LoadingLayout from './components/Layout/LoadingLayout/LoadingLayout'
 import DefaultLayout from './components/Layout/DefaultLayout/DefaultLayout'
 import AuthLayout from './components/Layout/AuthLayout/AuthLayout'
-import ErrorBoundary from './ErrorBoundary'
+import ErrorBoundary from './errorBoundary'
 
 const Login = lazy(() => import('./containers/Login/Login'))
 const Register = lazy(() => import('./containers/Register/Register'))

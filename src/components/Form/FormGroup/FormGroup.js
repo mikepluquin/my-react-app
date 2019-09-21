@@ -18,6 +18,7 @@ const formGroup = props => {
         props.control.label
           ? <Label
             invalid={hasErrors}
+            valid={props.control.valid}
             required={props.control.required}
             for={props.control.name}
           >

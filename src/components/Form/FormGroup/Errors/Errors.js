@@ -2,8 +2,7 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
 const errors = props => {
-
-  return(
+  return (
     <small className="text-danger">
       {props.messages.join(', ')}
     </small>
