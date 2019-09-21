@@ -29,7 +29,7 @@ const form = props => {
 
         {
           props.submit
-            ? <Button {...props.submit} animated={props.loading} type="submit">
+            ? <Button {...props.submit} type="submit">
               {
                 props.loading
                   ? <Spinner

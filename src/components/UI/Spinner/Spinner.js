@@ -24,7 +24,7 @@ const spinner = props => {
 spinner.propTypes = {
   color: PropTypes.string,
   type: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.string
 }
 
 spinner.defaultProps = {
