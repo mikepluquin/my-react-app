@@ -8,6 +8,7 @@ import AuthLayout from './components/Layout/AuthLayout/AuthLayout'
 // import DefaultLayout from './components/Layout/DefaultLayout/DefaultLayout'
 const Login = lazy(() => import('./containers/Login/Login'))
 const Register = lazy(() => import('./containers/Register/Register'))
+const Home = lazy(() => import('./containers/Home/Home'))
 
 class App extends Component {
   render() {
@@ -21,8 +22,8 @@ class App extends Component {
           {
             logged ?
               <Fragment>
-                <AuthLayout exact path="/login" component={Login} />
-                <Redirect to="/login" />
+                <AuthLayout exact path="/" component={Home} />
+                <Redirect to="/" />
               </Fragment> :
 
               <Fragment>
