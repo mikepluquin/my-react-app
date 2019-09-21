@@ -1,15 +1,16 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 const button = props => {
   const classesName = [
     "btn"
   ]
 
-  if(props.size){
+  if (props.size) {
     classesName.push('btn-' + props.size)
   }
-  if(props.color){
+  if (props.color) {
     classesName.push('btn-' + props.color)
   }
 
@@ -18,14 +19,23 @@ const button = props => {
       className={classesName.join(' ')}
       type={props.type}
       disabled={props.disabled}>
-      {props.children}
-    </button>
+      {
+        props.animated ?
+          <CSSTransitionGroup transitionName="btn-popped">
+            <div key="0">
+              {props.children}
+            </div>
+          </CSSTransitionGroup>
+          : props.children
+      }
+    </button >
   )
 }
 
 button.propTypes = {
   size: PropTypes.string,
-  color: PropTypes.string
+  color: PropTypes.string,
+  animated: true
 }
 
 button.defaultProps = {

@@ -4,3 +4,23 @@
 
 .bg-blue
   background-color: #4FC3F7
+
+.btn-popped-enter
+  width: 200%
+  animation-duration: 25s
+  animation-name: popped-enter
+
+
+@keyframes popped-enter 
+  from 
+    margin-left: 100%
+    width: 300%
+  
+  75% 
+    font-size: 300%
+    margin-left: 25%
+    width: 150%
+    
+  to 
+    margin-left: 0%
+    width: 100%
