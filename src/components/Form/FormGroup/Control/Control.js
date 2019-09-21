@@ -33,7 +33,7 @@ control.propTypes = {
   disabled: PropTypes.bool,
   invalid: PropTypes.bool,
   changed: PropTypes.func,
-  placeholder: PropTypes.array,
+  placeholder: PropTypes.string,
   value: PropTypes.any
 }
 

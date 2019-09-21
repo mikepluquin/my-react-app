@@ -35,7 +35,8 @@ const button = props => {
 button.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
-  animated: true
+  animated: PropTypes.bool,
+  disabled: PropTypes.bool
 }
 
 button.defaultProps = {
