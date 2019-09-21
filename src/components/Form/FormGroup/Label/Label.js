@@ -18,6 +18,7 @@ const label = props => {
 }
 
 label.propTypes = {
+  required: PropTypes.bool,
   invalid: PropTypes.bool,
   for: PropTypes.string
 }

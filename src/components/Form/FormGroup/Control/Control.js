@@ -33,6 +33,8 @@ control.propTypes = {
   disabled: PropTypes.bool,
   invalid: PropTypes.bool,
   changed: PropTypes.func,
+  placeholder: PropTypes.array,
+  value: PropTypes.any
 }
 
 export default memo(control)

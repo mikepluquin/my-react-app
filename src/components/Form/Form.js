@@ -13,9 +13,9 @@ const form = props => {
     <form onSubmit={props.submitted}>
       <fieldset disabled={disabled}>
         {
-          hasErrors > 0 ?
-            <Errors messages={props.errors} /> :
-            null
+          hasErrors > 0
+            ? <Errors messages={props.errors} />
+            : null
         }
 
         {Object.keys(props.controls).map((name, index) => (
@@ -27,17 +27,18 @@ const form = props => {
             changed={(name, value) => props.changed(name, value)} />
         ))}
 
-        {props.submit ?
-          <Button {...props.submit} animated={props.loading} type="submit">
-            {
-              props.loading ?
-                <Spinner
-                  size="sm"
-                /> :
-                props.submit.value
-            }
-          </Button> :
-          null
+        {
+          props.submit
+            ? <Button {...props.submit} animated={props.loading} type="submit">
+              {
+                props.loading
+                  ? <Spinner
+                    size="sm"
+                  />
+                  : props.submit.value
+              }
+            </Button>
+            : null
         }
       </fieldset>
     </form>
@@ -45,6 +46,7 @@ const form = props => {
 }
 
 form.propTypes = {
+  loading: PropTypes.bool,
   controls: PropTypes.object.isRequired,
   submit: PropTypes.object,
   errors: PropTypes.array,

@@ -15,15 +15,15 @@ const formGroup = props => {
   return (
     <div className={classesName.join(' ')}>
       {
-        props.control.label ?
-          <Label
+        props.control.label
+          ? <Label
             invalid={hasErrors}
             required={props.control.required}
             for={props.control.name}
           >
             {props.control.label}
-          </Label> :
-          null
+          </Label>
+          : null
       }
 
       <Control
@@ -34,9 +34,9 @@ const formGroup = props => {
         changed={(name, value) => props.changed(name, value)} />
 
       {
-        hasErrors > 0 ?
-          <Errors messages={props.control.errors} /> :
-          null
+        hasErrors
+          ? <Errors messages={props.control.errors} />
+          : null
       }
     </div>
   )
@@ -44,7 +44,6 @@ const formGroup = props => {
 
 formGroup.propTypes = {
   control: PropTypes.object.isRequired,
-  errors: PropTypes.array,
   name: PropTypes.string,
   disabled: PropTypes.bool,
   changed: PropTypes.func
