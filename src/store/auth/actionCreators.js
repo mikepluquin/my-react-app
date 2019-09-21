@@ -9,6 +9,15 @@ export const authLoginInit = (payload) => {
   }
 }
 
+export const authLoginSuccess = (token, userId, expirationDate) => {
+  return {
+    type: actionTypes.AUTH_LOGIN_SUCCESS,
+    token: token,
+    userId: userId,
+    expirationDate: expirationDate
+  }
+}
+
 export const authRegisterInit = (payload) => {
   return{
     type: actionTypes.AUTH_LOGIN_INIT,
@@ -17,9 +26,10 @@ export const authRegisterInit = (payload) => {
     done: payload.done
   }
 }
-export const authLoginSuccess = (token, userId, expirationDate) => {
+
+export const authRegisterSuccess = (token, userId, expirationDate) => {
   return {
-    type: actionTypes.AUTH_LOGIN_SUCCESS,
+    type: actionTypes.AUTH_REGISTER_SUCCESS,
     token: token,
     userId: userId,
     expirationDate: expirationDate

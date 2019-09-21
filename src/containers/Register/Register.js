@@ -29,7 +29,7 @@ class Login extends Component {
           value: '',
           errors: []
         },
-        passwordConfirmation: {
+        password_confirmation: {
           type: "password",
           placeholder: "confirm your password",
           label: "Password confirmation",
@@ -37,7 +37,7 @@ class Login extends Component {
           value: '',
           errors: [],
         },
-        firstName: {
+        first_name: {
           type: "text",
           placeholder: "your first name",
           label: "First name",
@@ -45,7 +45,7 @@ class Login extends Component {
           value: '',
           errors: [],
         },
-        lastName: {
+        last_name: {
           type: "text",
           placeholder: "your last name",
           label: "Last name",
@@ -53,8 +53,8 @@ class Login extends Component {
           value: '',
           errors: [],
         },
-        bornDate: {
-          type: "text",
+        born_date: {
+          type: "date",
           placeholder: "your born date",
           label: "Born date",
           required: true,
@@ -86,21 +86,19 @@ class Login extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault()
 
+    const attributes = {}
+    Object.keys(this.state.form.controls).forEach((obj) => {
+      attributes[obj] = this.state.form.controls[obj].value
+    })
+
     this.props.onRegister({
-      attributes: {
-        email: this.state.form.controls.email.value,
-        password: this.state.form.controls.password.value,
-        passwordConfirmation: this.state.form.controls.passwordConfirmation.value,
-        firstName: this.state.form.controls.firstName.value,
-        lastName: this.state.form.controls.lastName.value,
-        bornDate: this.state.form.controls.bornDate.value
-      },
-      started: this.handleLoginStarted,
-      done: this.handleLoginDone
+      attributes: attributes,
+      started: this.handleRegisterStarted,
+      done: this.handleRegisterDone
     })
   }
 
-  handleLoginStarted = () => {
+  handleRegisterStarted = () => {
     const updatedForm = fromJS(this.state.form)
       .set('loading', true)
       .set('disabled', true)
@@ -111,7 +109,7 @@ class Login extends Component {
     })
   }
 
-  handleLoginDone = (payload = null) => {
+  handleRegisterDone = (payload = null) => {
     const errors = payload && payload.errors ? payload.errors : []
     const updatedForm = fromJS(this.state.form)
       .set('loading', false)
@@ -144,28 +142,28 @@ class Login extends Component {
                     changed={(name, value) => this.handleFormChange(name, value)} />
 
                   <FormGroup
-                    name="passwordConfirmation"
-                    control={this.state.form.controls.passwordConfirmation}
+                    name="password_confirmation"
+                    control={this.state.form.controls.password_confirmation}
                     disabled={this.state.form.disabled}
                     changed={(name, value) => this.handleFormChange(name, value)} />
                 </div>
 
                 <div className="col-md-6">
                   <FormGroup
-                    name="firstName"
-                    control={this.state.form.controls.firstName}
+                    name="first_name"
+                    control={this.state.form.controls.first_name}
                     disabled={this.state.form.disabled}
                     changed={(name, value) => this.handleFormChange(name, value)} />
 
                   <FormGroup
-                    name="lastName"
-                    control={this.state.form.controls.lastName}
+                    name="last_name"
+                    control={this.state.form.controls.last_name}
                     disabled={this.state.form.disabled}
                     changed={(name, value) => this.handleFormChange(name, value)} />
 
                   <FormGroup
-                    name="bornDate"
-                    control={this.state.form.controls.bornDate}
+                    name="born_date"
+                    control={this.state.form.controls.born_date}
                     disabled={this.state.form.disabled}
                     changed={(name, value) => this.handleFormChange(name, value)} />
                 </div>
@@ -203,12 +201,6 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.auth.loading
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     onRegister: (payload) => dispatch(actionCreators.authRegisterInit(payload))
@@ -219,4 +211,4 @@ Login.propTypes = {
   loading: PropTypes.bool
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login)

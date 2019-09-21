@@ -51,11 +51,13 @@ class Login extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault()
 
+    const attributes = {}
+    Object.keys(this.state.form.controls).forEach((obj) => {
+      attributes[obj] = this.state.form.controls[obj].value
+    })
+
     this.props.onLogin({
-      attributes: {
-        email: this.state.form.controls.email.value,
-        password: this.state.form.controls.password.value
-      },
+      attributes: attributes,
       started: this.handleLoginStarted,
       done: this.handleLoginDone
     })
@@ -109,12 +111,6 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    loading: state.auth.loading
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: (payload) => dispatch(actionCreators.authLoginInit(payload))
@@ -125,4 +121,4 @@ Login.propTypes = {
   loading: PropTypes.bool
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login)

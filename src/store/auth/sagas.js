@@ -3,7 +3,6 @@ import { put } from 'redux-saga/effects'
 import * as api from '../../services/api'
 import * as actionCreators from './actionCreators'
 
-
 export function* authLoginInitSaga(action) {
   yield action.started({})
   const response = yield api.login(action.attributes)
