@@ -1,7 +1,7 @@
 import { create } from 'apisauce'
 
 const config = create({
-  baseURL: "http://localhost:3001/",
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   timeout: 20000
 })
 
